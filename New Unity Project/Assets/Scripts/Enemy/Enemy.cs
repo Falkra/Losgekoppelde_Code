@@ -33,6 +33,9 @@ public class Enemy : MonoBehaviour {
         add.y = defaultY + (sinOffset * Mathf.Sin(sinRotation * Mathf.PI / 180));
 
         rb.position = add;
+
+        sinRotation += speed.y;
+        sinRotation %= 360;
     }
 
     public void CheckPosition(float x, float y)
@@ -40,8 +43,10 @@ public class Enemy : MonoBehaviour {
 
     }
     
-    private void Die()
+    // Set to private after CheckPosition works
+    public void Die()
     {
-        Debug.Log("Die");   
+        Debug.Log("Die");
+        Destroy(gameObject);
     }
 }
